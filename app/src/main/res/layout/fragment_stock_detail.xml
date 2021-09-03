@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/symbol_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:text="Symbol" />
+    <TextView
+        android:id="@+id/name_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/symbol_title"
+        android:text="Name" />
+    <TextView
+        android:id="@+id/Current_Price_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/name_title"
+        android:text="Current Price" />
+    <TextView
+        android:id="@+id/daily_low_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/Current_Price_title"
+        android:text="Daily Low" />
+    <TextView
+        android:id="@+id/daily_high_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/daily_low_title"
+        android:text="Daily High" />
+    <TextView
+        android:id="@+id/symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Symbol" />
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/symbol"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Name" />
+    <TextView
+        android:id="@+id/current_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="currentprice" />
+    <TextView
+        android:id="@+id/daily_low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/current_price"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="dailylow" />
+    <TextView
+        android:id="@+id/daily_high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        app:layout_constraintTop_toBottomOf="@+id/daily_low"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="hello_blank_fragment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
