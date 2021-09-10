@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 
 class HomeViewModel : ViewModel() {
 
-    private val _stockLiveData: MutableLiveData<StockApiResponse> = MutableLiveData()
+    private val _stockLiveData = MutableLiveData<StockApiResponse>()
     val stockLiveData: LiveData<StockApiResponse> = _stockLiveData
     var serviceStarted = false
     private var subscription: Disposable? = null
@@ -24,28 +24,27 @@ class HomeViewModel : ViewModel() {
         if (!serviceStarted) {
             subscription = Observable.interval(0, 3, TimeUnit.SECONDS)
                 .flatMap { Repository.fetchFavStock() }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(onError = {
-                    val temp = StockApiResponse(Status.ERROR, null)
-                    _stockLiveData.value = temp
-                }, onNext = {
-                    val prevMap = _stockLiveData.value?.map
-                    it.status = Status.SUCCESS
-                    if(it.map !=null){
-                        for(key:String in it.map.keys){
-                            if(prevMap != null && it.map != null){
-                                if(prevMap[key]!!.price > it.map?.get(key)!!.price){
-                                    it.map.get(key)!!.color = "red"
-                                }
-                                if(prevMap[key]!!.price < it.map?.get(key)!!.price){
-                                    it.map.get(key)!!.color = "green"
-                                }
-                                if(prevMap[key]!!.price == it.map?.get(key)!!.price){
-                                    it.map.get(key)!!.color = "grey"
-                                }
+                .scan { t1, t2 ->
+                    t2.map.filterKeys { s -> t1.map.containsKey(s) }
+                        .forEach { (s,key) ->
+                            if(t1.map.getValue(s).price > key.price){
+                                key.color = "red"
+                            }
+                            if(t1.map.getValue(s).price < key.price){
+                                key.color = "green"
+                            }
+                            if(t1.map.getValue(s).price == key.price){
+                                key.color = "grey"
                             }
                         }
-                    }
+                    t2
+                }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(onError = {
+                    val temp = StockApiResponse(Status.ERROR, mapOf())
+                    _stockLiveData.value = temp
+                }, onNext = { it ->
+                    it.status = Status.SUCCESS
                     _stockLiveData.value = it
                 })
         }
