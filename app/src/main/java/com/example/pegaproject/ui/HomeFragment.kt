@@ -68,7 +68,7 @@ class StockAdapter(private val onClickListener: StockListOnClickListener) :
             val curr = stocks[position]
             symbol.text = curr.symbol
             companyName.text = curr.name
-            currentPrice.text = "$" + curr.price.toString()
+            currentPrice.text = "$" + curr.price.toString()+curr.color
             favoriteSection.setOnClickListener {
                 onClickListener.onStockClicked(curr.symbol)
             }

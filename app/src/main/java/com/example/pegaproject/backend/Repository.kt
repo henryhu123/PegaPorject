@@ -16,6 +16,8 @@ object Repository {
         retrofit.create(StockApi::class.java)
     }
 
+
+
     private val retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("https://71iztxw7wh.execute-api.us-east-1.amazonaws.com/interview/")
